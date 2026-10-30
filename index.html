@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=3c8306c3">
+<link rel="stylesheet" href="style.css?v=c5a575b6">
 <title>Aegis demo</title>
 </head>
 <body>
@@ -48,12 +48,43 @@
     <p class="note">Harm runs from 0 to 1 over the ontology's query workload. Top bars: the most harmful chain each search finds. Bottom bars: harm left after the locks, against a two-edit attacker. The numbers come from <code>results/attack_defense/2026-10-18.json</code>; this page computes nothing.</p>
   </div>
 </section>
+<section class="block" id="kg-attack">
+  <h2>Attack a knowledge graph through its ontology</h2>
+  <p class="sub">The knowledge graph never changes. The attacker edits only the ontology the pipeline reasons with, and the answers drift. A stealthy attacker leaves every term the questions name in place, so every query still validates.</p>
+  <div class="tabs" id="kg-arms" role="tablist"></div>
+  <div class="kg-grid">
+    <div class="demo-card">
+      <div class="head"><h3>White box: answer F1 per query</h3><span class="tag">LUBM, <b>14 queries</b></span></div>
+      <div class="slider"><span>budget</span><input id="kg-budget" type="range" min="1" max="4" value="2" aria-label="Edits"><span id="kg-budget-out"></span></div>
+      <div class="bars" id="kg-bars"></div>
+      <ol class="kg-mutations" id="kg-mutations"></ol>
+      <p class="note" id="kg-summary"></p>
+    </div>
+    <div class="demo-card">
+      <div class="head"><h3>What the attacker knows</h3><span class="tag">two edits, <b>scored on the real KG</b></span></div>
+      <table class="kg-table"><thead><tr><th scope="col">Level</th><th scope="col">Hidden from the attacker</th><th scope="col">Harm</th></tr></thead><tbody id="kg-levels"></tbody></table>
+      <p class="note">Each attacker searches on its own model (a pseudo-KG sampled through a guarded retriever, a surrogate reasoner, or only the answers it can probe), and its attack is then run on the real pipeline. The searches combine edits that hurt on their own, so they can miss a pair that only hurts together; a grey-box attacker can stumble on one the white box missed.</p>
+    </div>
+    <div class="demo-card">
+      <div class="head"><h3>Drift as edits pile up</h3><span class="tag">random edits, <b>5 orders</b></span></div>
+      <svg class="kg-drift" id="kg-drift" role="img" aria-label="Answer drift against number of random edits, for failure, drift, and pollution"></svg>
+      <p class="note" id="kg-drift-tip"></p>
+      <p class="note">Answer drift is the mean Jaccard distance from the honest answers. Failure loses answers, pollution adds wrong ones, drift moves things that still look right.</p>
+    </div>
+    <div class="demo-card">
+      <div class="head"><h3>Attack families</h3><span class="tag">one edit each</span></div>
+      <table class="kg-table"><thead><tr><th scope="col">Family</th><th scope="col">Regime</th><th scope="col" class="num">Harmful</th><th scope="col">Worst harm</th></tr></thead><tbody id="kg-families"></tbody></table>
+      <p class="note">Families from OntoCheck-Bench, Section 6. Every edit is reversible: the strongest attacks are committed to OntoDB and rolled back from its log. The numbers come from <code>results/whitebox_kg/2026-10-30.json and results/threat_levels/</code>.</p>
+    </div>
+  </div>
+</section>
 <section class="block" id="watch">
   <h2>Watch the attack search work</h2>
   <p class="sub">A recorded run of the library's own search on a small ontology. The bandit grows its tree one iteration at a time while the ontology on the right is attacked. Pause, step, or switch to impact, greedy search, or locking. <a href="showcase.html">Open the full page</a>.</p>
   <div role="group" id="walk" data-act="2" data-autoplay="true" aria-label="Step-by-step replay">Loading the recorded run…</div>
 </section>
 <script src="demo.js?v=3a04c4bc"></script>
+<script src="kgattack.js?v=bffe622e"></script>
 <script>/* Load the replay fresh: a cached page must never run an old one. */ fetch("walkthrough.js", { cache: "no-cache" }).then((r) => r.text()).then((t) => { const s = document.createElement("script"); s.textContent = t; document.body.append(s); });</script>
 </main>
 <footer class="site">Aegis demo by <a href="https://lamng3.com/">Lam Nguyen</a>.</footer>

@@ -1,0 +1,842 @@
+{
+ "source": "results/whitebox_kg/2026-10-30.json and results/threat_levels/",
+ "queries": [
+  {
+   "id": "q01",
+   "label": "graduate students in one course",
+   "gold": 4
+  },
+  {
+   "id": "q02",
+   "label": "graduate students in their own university",
+   "gold": 0
+  },
+  {
+   "id": "q03",
+   "label": "one professor's publications",
+   "gold": 6
+  },
+  {
+   "id": "q04",
+   "label": "professors of a department",
+   "gold": 34
+  },
+  {
+   "id": "q05",
+   "label": "people in a department",
+   "gold": 719
+  },
+  {
+   "id": "q06",
+   "label": "all students",
+   "gold": 7790
+  },
+  {
+   "id": "q07",
+   "label": "students of one teacher",
+   "gold": 67
+  },
+  {
+   "id": "q08",
+   "label": "students of a university",
+   "gold": 7790
+  },
+  {
+   "id": "q09",
+   "label": "student, advisor, course triangles",
+   "gold": 208
+  },
+  {
+   "id": "q10",
+   "label": "students in one course",
+   "gold": 4
+  },
+  {
+   "id": "q11",
+   "label": "research groups of a university",
+   "gold": 224
+  },
+  {
+   "id": "q12",
+   "label": "chairs of a university",
+   "gold": 15
+  },
+  {
+   "id": "q13",
+   "label": "alumni of a university",
+   "gold": 1
+  },
+  {
+   "id": "q14",
+   "label": "undergraduates",
+   "gold": 5916
+  }
+ ],
+ "arms": {
+  "any": [
+   {
+    "budget": 1,
+    "harm": 0.357143,
+    "lost": 15859,
+    "added": 0,
+    "mutations": [
+     {
+      "family": "ConceptDrop",
+      "target": "Student"
+     }
+    ],
+    "f1": {
+     "q01": 1.0,
+     "q02": 1.0,
+     "q03": 1.0,
+     "q04": 1.0,
+     "q05": 1.0,
+     "q06": 0.0,
+     "q07": 0.0,
+     "q08": 0.0,
+     "q09": 0.0,
+     "q10": 0.0,
+     "q11": 1.0,
+     "q12": 1.0,
+     "q13": 1.0,
+     "q14": 1.0
+    }
+   },
+   {
+    "budget": 2,
+    "harm": 0.5,
+    "lost": 16579,
+    "added": 0,
+    "mutations": [
+     {
+      "family": "ConceptDrop",
+      "target": "Student"
+     },
+     {
+      "family": "ConceptDrop",
+      "target": "Person"
+     }
+    ],
+    "f1": {
+     "q01": 1.0,
+     "q02": 1.0,
+     "q03": 1.0,
+     "q04": 1.0,
+     "q05": 0.0,
+     "q06": 0.0,
+     "q07": 0.0,
+     "q08": 0.0,
+     "q09": 0.0,
+     "q10": 0.0,
+     "q11": 1.0,
+     "q12": 1.0,
+     "q13": 0.0,
+     "q14": 1.0
+    }
+   },
+   {
+    "budget": 3,
+    "harm": 0.571429,
+    "lost": 16594,
+    "added": 0,
+    "mutations": [
+     {
+      "family": "ConceptDrop",
+      "target": "Student"
+     },
+     {
+      "family": "ConceptDrop",
+      "target": "Person"
+     },
+     {
+      "family": "ConceptDrop",
+      "target": "Chair"
+     }
+    ],
+    "f1": {
+     "q01": 1.0,
+     "q02": 1.0,
+     "q03": 1.0,
+     "q04": 1.0,
+     "q05": 0.0,
+     "q06": 0.0,
+     "q07": 0.0,
+     "q08": 0.0,
+     "q09": 0.0,
+     "q10": 0.0,
+     "q11": 1.0,
+     "q12": 0.0,
+     "q13": 0.0,
+     "q14": 1.0
+    }
+   },
+   {
+    "budget": 4,
+    "harm": 0.642857,
+    "lost": 16628,
+    "added": 0,
+    "mutations": [
+     {
+      "family": "ConceptDrop",
+      "target": "Student"
+     },
+     {
+      "family": "ConceptDrop",
+      "target": "Person"
+     },
+     {
+      "family": "ConceptDrop",
+      "target": "Chair"
+     },
+     {
+      "family": "ConceptDrop",
+      "target": "Professor"
+     }
+    ],
+    "f1": {
+     "q01": 1.0,
+     "q02": 1.0,
+     "q03": 1.0,
+     "q04": 0.0,
+     "q05": 0.0,
+     "q06": 0.0,
+     "q07": 0.0,
+     "q08": 0.0,
+     "q09": 0.0,
+     "q10": 0.0,
+     "q11": 1.0,
+     "q12": 0.0,
+     "q13": 0.0,
+     "q14": 1.0
+    }
+   }
+  ],
+  "stealthy": [
+   {
+    "budget": 1,
+    "harm": 0.119612,
+    "lost": 3865,
+    "added": 0,
+    "mutations": [
+     {
+      "family": "ChainBreak",
+      "target": "some(takesCourse,Course)"
+     }
+    ],
+    "f1": {
+     "q01": 1.0,
+     "q02": 1.0,
+     "q03": 1.0,
+     "q04": 1.0,
+     "q05": 1.0,
+     "q06": 0.863272,
+     "q07": 0.936508,
+     "q08": 0.863272,
+     "q09": 0.662379,
+     "q10": 0.0,
+     "q11": 1.0,
+     "q12": 1.0,
+     "q13": 1.0,
+     "q14": 1.0
+    }
+   },
+   {
+    "budget": 2,
+    "harm": 0.191041,
+    "lost": 3866,
+    "added": 0,
+    "mutations": [
+     {
+      "family": "ChainBreak",
+      "target": "some(takesCourse,Course)"
+     },
+     {
+      "family": "RelationDrop",
+      "target": "degreeFrom"
+     }
+    ],
+    "f1": {
+     "q01": 1.0,
+     "q02": 1.0,
+     "q03": 1.0,
+     "q04": 1.0,
+     "q05": 1.0,
+     "q06": 0.863272,
+     "q07": 0.936508,
+     "q08": 0.863272,
+     "q09": 0.662379,
+     "q10": 0.0,
+     "q11": 1.0,
+     "q12": 1.0,
+     "q13": 0.0,
+     "q14": 1.0
+    }
+   },
+   {
+    "budget": 3,
+    "harm": 0.262469,
+    "lost": 3881,
+    "added": 0,
+    "mutations": [
+     {
+      "family": "ChainBreak",
+      "target": "some(takesCourse,Course)"
+     },
+     {
+      "family": "RelationDrop",
+      "target": "degreeFrom"
+     },
+     {
+      "family": "RelationDrop",
+      "target": "headOf"
+     }
+    ],
+    "f1": {
+     "q01": 1.0,
+     "q02": 1.0,
+     "q03": 1.0,
+     "q04": 1.0,
+     "q05": 1.0,
+     "q06": 0.863272,
+     "q07": 0.936508,
+     "q08": 0.863272,
+     "q09": 0.662379,
+     "q10": 0.0,
+     "q11": 1.0,
+     "q12": 0.0,
+     "q13": 0.0,
+     "q14": 1.0
+    }
+   },
+   {
+    "budget": 4,
+    "harm": 0.333898,
+    "lost": 4105,
+    "added": 0,
+    "mutations": [
+     {
+      "family": "ChainBreak",
+      "target": "some(takesCourse,Course)"
+     },
+     {
+      "family": "RelationDrop",
+      "target": "degreeFrom"
+     },
+     {
+      "family": "RelationDrop",
+      "target": "headOf"
+     },
+     {
+      "family": "AxiomDrop",
+      "target": "subOrganizationOf type TransitiveProperty"
+     }
+    ],
+    "f1": {
+     "q01": 1.0,
+     "q02": 1.0,
+     "q03": 1.0,
+     "q04": 1.0,
+     "q05": 1.0,
+     "q06": 0.863272,
+     "q07": 0.936508,
+     "q08": 0.863272,
+     "q09": 0.662379,
+     "q10": 0.0,
+     "q11": 0.0,
+     "q12": 0.0,
+     "q13": 0.0,
+     "q14": 1.0
+    }
+   }
+  ]
+ },
+ "levels": {
+  "any": [
+   {
+    "level": "L0",
+    "name": "white box",
+    "hidden": "nothing",
+    "true_harm": 0.5,
+    "believed_harm": 0.5,
+    "mutations": [
+     "ConceptDrop: Student",
+     "ConceptDrop: Person"
+    ]
+   },
+   {
+    "level": "L1",
+    "name": "KG hidden",
+    "hidden": "the KG: 1,000 guarded retriever calls",
+    "true_harm": 0.5,
+    "believed_harm": 0.5,
+    "mutations": [
+     "ConceptDrop: Student",
+     "ConceptDrop: Person"
+    ]
+   },
+   {
+    "level": "L2",
+    "name": "pipeline hidden",
+    "hidden": "the KG and the reasoner (RDFS surrogate)",
+    "true_harm": 0.5,
+    "believed_harm": 0.3571,
+    "mutations": [
+     "ConceptDrop: Student",
+     "ConceptDrop: Person"
+    ]
+   },
+   {
+    "level": "L3",
+    "name": "questions in words",
+    "hidden": "the KG; questions are linked by label",
+    "true_harm": 0.4286,
+    "believed_harm": 0.4286,
+    "mutations": [
+     "ConceptDrop: Course",
+     "ConceptDrop: UndergraduateStudent"
+    ]
+   },
+   {
+    "level": "L4",
+    "name": "black box",
+    "hidden": "the KG and the pipeline: 200 probes of answers",
+    "true_harm": 0.0782,
+    "believed_harm": 0.0782,
+    "mutations": [
+     "ConceptDrop: Chair",
+     "NoiseModuleLink: Course ⊑ Student"
+    ]
+   }
+  ],
+  "stealthy": [
+   {
+    "level": "L0",
+    "name": "white box",
+    "hidden": "nothing",
+    "true_harm": 0.191,
+    "believed_harm": 0.191,
+    "mutations": [
+     "ChainBreak: some(takesCourse,Course)",
+     "RelationDrop: degreeFrom"
+    ]
+   },
+   {
+    "level": "L1",
+    "name": "KG hidden",
+    "hidden": "the KG: 1,000 guarded retriever calls",
+    "true_harm": 0.3571,
+    "believed_harm": 0.3571,
+    "mutations": [
+     "ChainBreak: some(takesCourse,Course)",
+     "HierarchyCut: UndergraduateStudent ⊑ Student"
+    ]
+   },
+   {
+    "level": "L2",
+    "name": "pipeline hidden",
+    "hidden": "the KG and the reasoner (RDFS surrogate)",
+    "true_harm": 0.0,
+    "believed_harm": 0.3571,
+    "mutations": [
+     "HierarchyCut: UndergraduateStudent ⊑ Student",
+     "DirectionFlip: publicationAuthor"
+    ]
+   },
+   {
+    "level": "L3",
+    "name": "questions in words",
+    "hidden": "the KG; questions are linked by label",
+    "true_harm": 0.31,
+    "believed_harm": 0.3778,
+    "mutations": [
+     "LexicalStrip: Student “student”",
+     "LexicalStrip: Person “person”"
+    ]
+   },
+   {
+    "level": "L4",
+    "name": "black box",
+    "hidden": "the KG and the pipeline: 200 probes of answers",
+    "true_harm": 0.0091,
+    "believed_harm": 0.0091,
+    "mutations": [
+     "NoiseModuleLink: Course ⊑ Student",
+     "ConstraintPoison: domain(subOrganizationOf) Organization → ResearchGroup"
+    ]
+   }
+  ]
+ },
+ "drift": {
+  "failure": [
+   {
+    "dose": 1,
+    "harm": 0.0,
+    "drift": 0.0,
+    "lost": 0,
+    "added": 0
+   },
+   {
+    "dose": 2,
+    "harm": 0.0,
+    "drift": 0.0,
+    "lost": 0,
+    "added": 0
+   },
+   {
+    "dose": 3,
+    "harm": 0.0,
+    "drift": 0.0,
+    "lost": 0,
+    "added": 0
+   },
+   {
+    "dose": 4,
+    "harm": 0.0143,
+    "drift": 0.0143,
+    "lost": 44.8,
+    "added": 0
+   },
+   {
+    "dose": 5,
+    "harm": 0.0429,
+    "drift": 0.0429,
+    "lost": 188.8,
+    "added": 0
+   },
+   {
+    "dose": 6,
+    "harm": 0.0571,
+    "drift": 0.0571,
+    "lost": 195.6,
+    "added": 0
+   },
+   {
+    "dose": 7,
+    "harm": 0.0571,
+    "drift": 0.0571,
+    "lost": 195.6,
+    "added": 0
+   },
+   {
+    "dose": 8,
+    "harm": 0.0718,
+    "drift": 0.0722,
+    "lost": 206.8,
+    "added": 0
+   },
+   {
+    "dose": 9,
+    "harm": 0.1133,
+    "drift": 0.1228,
+    "lost": 2180,
+    "added": 0
+   },
+   {
+    "dose": 10,
+    "harm": 0.1276,
+    "drift": 0.1371,
+    "lost": 2224.8,
+    "added": 0
+   }
+  ],
+  "drift": [
+   {
+    "dose": 1,
+    "harm": 0.0,
+    "drift": 0.0,
+    "lost": 0,
+    "added": 0
+   },
+   {
+    "dose": 2,
+    "harm": 0.0,
+    "drift": 0.0,
+    "lost": 0,
+    "added": 0
+   },
+   {
+    "dose": 3,
+    "harm": 0.0,
+    "drift": 0.0,
+    "lost": 0,
+    "added": 0
+   },
+   {
+    "dose": 4,
+    "harm": 0.0,
+    "drift": 0.0,
+    "lost": 0,
+    "added": 0
+   },
+   {
+    "dose": 5,
+    "harm": 0.0,
+    "drift": 0.0,
+    "lost": 0,
+    "added": 0
+   },
+   {
+    "dose": 6,
+    "harm": 0.0,
+    "drift": 0.0,
+    "lost": 0,
+    "added": 0
+   },
+   {
+    "dose": 7,
+    "harm": 0.0,
+    "drift": 0.0,
+    "lost": 0,
+    "added": 0
+   },
+   {
+    "dose": 8,
+    "harm": 0.0,
+    "drift": 0.0,
+    "lost": 0,
+    "added": 0
+   },
+   {
+    "dose": 9,
+    "harm": 0.0,
+    "drift": 0.0,
+    "lost": 0,
+    "added": 0
+   },
+   {
+    "dose": 10,
+    "harm": 0.0,
+    "drift": 0.0,
+    "lost": 0,
+    "added": 0
+   }
+  ],
+  "pollution": [
+   {
+    "dose": 1,
+    "harm": 0.0,
+    "drift": 0.0,
+    "lost": 0,
+    "added": 0
+   },
+   {
+    "dose": 2,
+    "harm": 0.0,
+    "drift": 0.0,
+    "lost": 0,
+    "added": 0
+   },
+   {
+    "dose": 3,
+    "harm": 0.0088,
+    "drift": 0.0134,
+    "lost": 0,
+    "added": 2399.6
+   },
+   {
+    "dose": 4,
+    "harm": 0.0088,
+    "drift": 0.0134,
+    "lost": 0,
+    "added": 2399.6
+   },
+   {
+    "dose": 5,
+    "harm": 0.0088,
+    "drift": 0.0134,
+    "lost": 0,
+    "added": 2399.6
+   },
+   {
+    "dose": 6,
+    "harm": 0.0088,
+    "drift": 0.0134,
+    "lost": 0,
+    "added": 2399.6
+   },
+   {
+    "dose": 7,
+    "harm": 0.0088,
+    "drift": 0.0134,
+    "lost": 0,
+    "added": 2399.6
+   },
+   {
+    "dose": 8,
+    "harm": 0.0096,
+    "drift": 0.0147,
+    "lost": 0,
+    "added": 2667.8
+   },
+   {
+    "dose": 9,
+    "harm": 0.0105,
+    "drift": 0.0161,
+    "lost": 0,
+    "added": 2866.6
+   },
+   {
+    "dose": 10,
+    "harm": 0.0105,
+    "drift": 0.0161,
+    "lost": 0,
+    "added": 2866.6
+   }
+  ]
+ },
+ "families": [
+  {
+   "family": "ConceptDrop",
+   "regime": "failure",
+   "candidates": 43,
+   "harmful": 7,
+   "max_harm": 0.3571,
+   "worst": "Student"
+  },
+  {
+   "family": "LexicalStrip",
+   "regime": "failure",
+   "candidates": 43,
+   "harmful": 10,
+   "max_harm": 0.1671,
+   "worst": "Student “student”",
+   "words": true
+  },
+  {
+   "family": "AliasPollution",
+   "regime": "pollution",
+   "candidates": 110,
+   "harmful": 10,
+   "max_harm": 0.1429,
+   "worst": "College “university department”",
+   "words": true
+  },
+  {
+   "family": "NearNeighborPoison",
+   "regime": "pollution",
+   "candidates": 10,
+   "harmful": 8,
+   "max_harm": 0.1429,
+   "worst": "CourseRecord “course”",
+   "words": true
+  },
+  {
+   "family": "RelationDrop",
+   "regime": "failure",
+   "candidates": 25,
+   "harmful": 8,
+   "max_harm": 0.1196,
+   "worst": "takesCourse"
+  },
+  {
+   "family": "ChainBreak",
+   "regime": "failure",
+   "candidates": 8,
+   "harmful": 2,
+   "max_harm": 0.1196,
+   "worst": "some(takesCourse,Course)"
+  },
+  {
+   "family": "InferenceWeaken",
+   "regime": "failure",
+   "candidates": 6,
+   "harmful": 2,
+   "max_harm": 0.1196,
+   "worst": "Student"
+  },
+  {
+   "family": "AxiomDrop",
+   "regime": "failure",
+   "candidates": 48,
+   "harmful": 3,
+   "max_harm": 0.0714,
+   "worst": "mastersDegreeFrom subPropertyOf degreeFrom"
+  },
+  {
+   "family": "ConstraintPoison",
+   "regime": "drift",
+   "candidates": 158,
+   "harmful": 5,
+   "max_harm": 0.0668,
+   "worst": "range(advisor) Professor → Chair"
+  },
+  {
+   "family": "FalseEquivalence",
+   "regime": "pollution",
+   "candidates": 55,
+   "harmful": 5,
+   "max_harm": 0.061,
+   "worst": "AssociateProfessor ≡ Chair"
+  },
+  {
+   "family": "NoiseModuleLink",
+   "regime": "pollution",
+   "candidates": 602,
+   "harmful": 16,
+   "max_harm": 0.0439,
+   "worst": "Publication ⊑ UndergraduateStudent"
+  },
+  {
+   "family": "GranularityShift",
+   "regime": "drift",
+   "candidates": 5,
+   "harmful": 0,
+   "max_harm": 0.0,
+   "worst": "AdministrativeStaff"
+  },
+  {
+   "family": "HierarchyCut",
+   "regime": "failure",
+   "candidates": 34,
+   "harmful": 0,
+   "max_harm": 0.0,
+   "worst": "AdministrativeStaff ⊑ Employee"
+  },
+  {
+   "family": "HierarchyRewire",
+   "regime": "drift",
+   "candidates": 33,
+   "harmful": 0,
+   "max_harm": 0.0,
+   "worst": "AssistantProfessor ⊑ Professor → Lecturer"
+  },
+  {
+   "family": "DirectionFlip",
+   "regime": "drift",
+   "candidates": 16,
+   "harmful": 0,
+   "max_harm": 0.0,
+   "worst": "advisor"
+  },
+  {
+   "family": "Genericize",
+   "regime": "drift",
+   "candidates": 1,
+   "harmful": 0,
+   "max_harm": 0.0,
+   "worst": "headOf ⊑ worksFor → memberOf"
+  },
+  {
+   "family": "DisjointPoison",
+   "regime": "pollution",
+   "candidates": 2,
+   "harmful": 0,
+   "max_harm": 0.0,
+   "worst": "Chair ⊥ FullProfessor"
+  }
+ ],
+ "ontodb": {
+  "any": {
+   "commits": 4,
+   "attacked_state_matches": true,
+   "restored": true,
+   "verify": "verify: ok"
+  },
+  "stealthy": {
+   "commits": 4,
+   "attacked_state_matches": true,
+   "restored": true,
+   "verify": "verify: ok"
+  }
+ }
+}

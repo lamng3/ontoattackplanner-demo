@@ -447,7 +447,7 @@
     "name": "questions in words",
     "hidden": "the KG; questions are linked by label",
     "true_harm": 0.31,
-    "believed_harm": 0.3778,
+    "believed_harm": 0.3829,
     "mutations": [
      "LexicalStrip: Student “student”",
      "LexicalStrip: Person “person”"
@@ -477,6 +477,7 @@
    "evaluations": 139,
    "believed_harm": 0.3526,
    "true_harm": 0.0139,
+   "augmented": false,
    "mutations": [
     "RelationDrop: memberOf",
     "NoiseModuleLink: Organization ⊑ UndergraduateStudent"
@@ -510,6 +511,7 @@
    "evaluations": 131,
    "believed_harm": 0.2143,
    "true_harm": 0.1582,
+   "augmented": false,
    "mutations": [
     "NoiseModuleLink: Course ⊑ UndergraduateStudent",
     "ConceptDrop: Person"
@@ -543,6 +545,7 @@
    "evaluations": 146,
    "believed_harm": 0.3571,
    "true_harm": 0.1582,
+   "augmented": false,
    "mutations": [
     "ConceptDrop: Person",
     "NoiseModuleLink: Course ⊑ UndergraduateStudent"
@@ -576,6 +579,7 @@
    "evaluations": 131,
    "believed_harm": 0.2143,
    "true_harm": 0.1582,
+   "augmented": false,
    "mutations": [
     "NoiseModuleLink: Course ⊑ UndergraduateStudent",
     "ConceptDrop: Person"
@@ -609,6 +613,7 @@
    "evaluations": 140,
    "believed_harm": 0.5,
    "true_harm": 0.5,
+   "augmented": false,
    "mutations": [
     "ConceptDrop: Student",
     "ConceptDrop: Person"
@@ -642,6 +647,7 @@
    "evaluations": 134,
    "believed_harm": 0.3571,
    "true_harm": 0.5,
+   "augmented": false,
    "mutations": [
     "ConceptDrop: Student",
     "ConceptDrop: Person"
@@ -675,6 +681,7 @@
    "evaluations": 140,
    "believed_harm": 0.5,
    "true_harm": 0.5,
+   "augmented": false,
    "mutations": [
     "ConceptDrop: Student",
     "ConceptDrop: Person"
@@ -708,6 +715,7 @@
    "evaluations": 134,
    "believed_harm": 0.3571,
    "true_harm": 0.5,
+   "augmented": false,
    "mutations": [
     "ConceptDrop: Student",
     "ConceptDrop: Person"
@@ -741,6 +749,7 @@
    "evaluations": 144,
    "believed_harm": 0.5,
    "true_harm": 0.5,
+   "augmented": false,
    "mutations": [
     "ConceptDrop: Student",
     "ConceptDrop: Person"
@@ -774,6 +783,7 @@
    "evaluations": 101,
    "believed_harm": 0.3571,
    "true_harm": 0.5,
+   "augmented": false,
    "mutations": [
     "ConceptDrop: Student",
     "ConceptDrop: Person"
@@ -807,6 +817,7 @@
    "evaluations": 136,
    "believed_harm": 0.5,
    "true_harm": 0.5,
+   "augmented": false,
    "mutations": [
     "ConceptDrop: Student",
     "ConceptDrop: Person"
@@ -840,6 +851,7 @@
    "evaluations": 104,
    "believed_harm": 0.3571,
    "true_harm": 0.5,
+   "augmented": false,
    "mutations": [
     "ConceptDrop: Student",
     "ConceptDrop: Person"
@@ -963,6 +975,7 @@
    "evaluations": 142,
    "believed_harm": 0.3483,
    "true_harm": 0.0714,
+   "augmented": false,
    "mutations": [
     "RelationDrop: member",
     "RelationDrop: mastersDegreeFrom"
@@ -996,6 +1009,7 @@
    "evaluations": 103,
    "believed_harm": 0.2143,
    "true_harm": 0.0154,
+   "augmented": false,
    "mutations": [
     "NoiseModuleLink: Course ⊑ UndergraduateStudent",
     "DirectionFlip: publicationAuthor"
@@ -1029,6 +1043,7 @@
    "evaluations": 151,
    "believed_harm": 0.2769,
    "true_harm": 0.0154,
+   "augmented": false,
    "mutations": [
     "NoiseModuleLink: Course ⊑ UndergraduateStudent",
     "RelationDrop: member"
@@ -1062,6 +1077,7 @@
    "evaluations": 103,
    "believed_harm": 0.2143,
    "true_harm": 0.0154,
+   "augmented": false,
    "mutations": [
     "NoiseModuleLink: Course ⊑ UndergraduateStudent",
     "DirectionFlip: publicationAuthor"
@@ -1095,6 +1111,7 @@
    "evaluations": 151,
    "believed_harm": 0.3571,
    "true_harm": 0.3571,
+   "augmented": false,
    "mutations": [
     "ChainBreak: some(takesCourse,Course)",
     "HierarchyCut: UndergraduateStudent ⊑ Student"
@@ -1128,6 +1145,7 @@
    "evaluations": 102,
    "believed_harm": 0.3571,
    "true_harm": 0.0,
+   "augmented": false,
    "mutations": [
     "HierarchyCut: UndergraduateStudent ⊑ Student",
     "DirectionFlip: publicationAuthor"
@@ -1161,6 +1179,7 @@
    "evaluations": 151,
    "believed_harm": 0.3571,
    "true_harm": 0.3571,
+   "augmented": false,
    "mutations": [
     "ChainBreak: some(takesCourse,Course)",
     "HierarchyCut: UndergraduateStudent ⊑ Student"
@@ -1194,6 +1213,7 @@
    "evaluations": 102,
    "believed_harm": 0.3571,
    "true_harm": 0.0,
+   "augmented": false,
    "mutations": [
     "HierarchyCut: UndergraduateStudent ⊑ Student",
     "DirectionFlip: publicationAuthor"
@@ -1227,6 +1247,7 @@
    "evaluations": 151,
    "believed_harm": 0.35,
    "true_harm": 0.1624,
+   "augmented": false,
    "mutations": [
     "ChainBreak: some(takesCourse,Course)",
     "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
@@ -1260,6 +1281,7 @@
    "evaluations": 87,
    "believed_harm": 0.3571,
    "true_harm": 0.0668,
+   "augmented": false,
    "mutations": [
     "HierarchyCut: UndergraduateStudent ⊑ Student",
     "ConstraintPoison: range(advisor) Professor → Chair"
@@ -1293,6 +1315,7 @@
    "evaluations": 151,
    "believed_harm": 0.2605,
    "true_harm": 0.1624,
+   "augmented": false,
    "mutations": [
     "ChainBreak: some(takesCourse,Course)",
     "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
@@ -1326,6 +1349,7 @@
    "evaluations": 91,
    "believed_harm": 0.3571,
    "true_harm": 0.0668,
+   "augmented": false,
    "mutations": [
     "HierarchyCut: UndergraduateStudent ⊑ Student",
     "ConstraintPoison: range(advisor) Professor → Chair"

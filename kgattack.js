@@ -31,7 +31,7 @@
     { key: "order", label: "row order", levels: ["L1", "L2"], choices: [["sorted", "sorted"], ["random", "random"]] },
     { key: "probes", label: "probes", levels: ["L4"], choices: [[50, "50"], [200, "200"], [1000, "1,000"]] },
   ];
-  var pick = { level: "L0", kg: "augmented", calls: 1000, order: "random", probes: 200 };
+  var pick = { level: "L0", kg: "crawled", calls: 1000, order: "random", probes: 200 };
 
   function tabs(choices, value, onpick) {
     var row = h("div", "tabs");
@@ -67,7 +67,7 @@
       if (r.level !== lv || r.arm !== arm) return false;
       if (lv === "L4") return r.probes === pick.probes;
       if (pick.kg === "full") return r.full_kg;
-      if (r.full_kg || (r.augmented !== false) !== (pick.kg === "augmented")) return false;
+      if (r.full_kg || r.augmented !== (pick.kg === "augmented")) return false;
       return lv === "L3" || (r.calls === pick.calls && r.order === pick.order);
     })[0] || null;
   }
@@ -80,7 +80,7 @@
     OPTIONS.forEach(function (o) {
       if (o.levels.indexOf(pick.level) < 0) return;
       var choices = o.choices.filter(function (c) { return !(c[0] === "full" && pick.level !== "L3"); });
-      if (o.key === "kg" && pick.level !== "L3" && pick.kg === "full") pick.kg = "augmented";
+      if (o.key === "kg" && pick.level !== "L3" && pick.kg === "full") pick.kg = "crawled";
       box.appendChild(h("span", null, o.label));
       box.appendChild(tabs(choices, pick[o.key], function (v) { pick[o.key] = v; update(); }));
     });
@@ -88,6 +88,23 @@
     var extra = pick.level === "L3" ? (pick.kg === "full" ? " Here it also has the full KG." : " Its pseudo-KG comes from 1,000 retriever calls in random order.") : "";
     el("kg-knows").textContent = a.knows + extra;
     el("kg-budget-row").hidden = pick.level !== "L0";
+    el("kg-hint").textContent = hint();
+  }
+
+  // What the picked assumptions mean, in a sentence or two.
+  function hint() {
+    var lv = pick.level;
+    if (lv === "L0") return "";
+    if (lv === "L4") return pick.probes + " probes: it may deploy " + pick.probes + " ontologies and see the answers each one gives. Half go to trying single edits, half to combining the best.";
+    var r = current(), size = r && r.pseudo_triples ? " Here: " + r.pseudo_triples.toLocaleString("en-US") + " triples, against 100,543 in the real KG." : "";
+    var kg = {
+      full: "Full KG: no retriever in the way; only the questions are in words.",
+      crawled: "Crawled: only the triples it fetched, walking out from the entities the queries name, at most 50 rows a call. Small, and centred on those entities.",
+      augmented: "Augmented: the crawl, with each sampled entity cloned until every class has the size a GROUP BY count reports. The data is still guessed; the proportions are right.",
+    }[pick.kg];
+    if (lv === "L3") return kg + size;
+    var order = pick.order === "sorted" ? "in sorted order: every call returns the same first rows, so the crawl keeps seeing the same entities." : "in random order: each call returns a random 50 rows, so the crawl spreads wider.";
+    return kg + " " + pick.calls.toLocaleString("en-US") + " retriever calls " + order + size;
   }
 
   function update() { picker(); render(); levels(); }
@@ -146,7 +163,7 @@
       tr.appendChild(h("td", "muted", r.hidden));
       var td = h("td"); td.appendChild(meter(r.true_harm, r.level !== "L0")); tr.appendChild(td);
       tr.title = r.mutations.join("; ") + (r.level === "L0" ? "" : " (the attacker believed " + r.believed_harm.toFixed(2) + ")");
-      tr.onclick = function () { pick.level = r.level; if (r.level === "L3") pick.kg = "augmented"; else { pick.calls = 1000; pick.order = "random"; pick.kg = "augmented"; pick.probes = 200; } update(); };
+      tr.onclick = function () { pick.level = r.level; pick.kg = "crawled"; pick.calls = 1000; pick.order = "random"; pick.probes = 200; update(); };
       body.appendChild(tr);
     });
   }

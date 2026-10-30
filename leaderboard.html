@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leaderboard — Aegis demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css?v=3c8306c3">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="site">
+  <a class="logo" href="index.html"><span class="logo-mark">A</span><span>Aegis</span></a>
+  <nav class="site" aria-label="Demos">
+    <a href="playground.html">Playground</a>
+    <a href="showcase.html">Showcase</a>
+    <a href="leaderboard.html" aria-current="page">Leaderboard</a>
+    <a href="https://lamng3.com/" class="pill">Lam Nguyen ↗</a>
+  </nav>
+</header>
+<main class="wrap demo-page" id="content">
+<p class="kicker">Experiments</p>
+<h1>Leaderboard</h1>
+<p class="lede">Attack strategies and defenses ranked on four real ontologies, from the recorded experiments.</p>
+
+<p>Two boards, from the same experiment. In the first the strongest attacker ranks first: the search that finds the most harmful chain of edits at equal cost. In the second the best defense ranks first: the one that leaves the least harm. Aegis's own searches and defenses are highlighted next to the simple baselines they have to beat.</p>
+<h2 id="attack">Attack: who finds the worst chain?</h2>
+<div data-arena data-src="leaderboard-attack.json"></div>
+<h2 id="defense">Defense: who leaves the least harm?</h2>
+<div data-arena data-src="leaderboard-defense.json"></div>
+<script src="arena.js?v=69095f49"></script>
+
+</main>
+<footer class="site">Aegis demo by <a href="https://lamng3.com/">Lam Nguyen</a>.</footer>
+</body>
+</html>

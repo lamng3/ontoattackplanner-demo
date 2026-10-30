@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playground — Aegis demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css?v=3c8306c3">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="site">
+  <a class="logo" href="index.html"><span class="logo-mark">A</span><span>Aegis</span></a>
+  <nav class="site" aria-label="Demos">
+    <a href="playground.html" aria-current="page">Playground</a>
+    <a href="showcase.html">Showcase</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="https://lamng3.com/" class="pill">Lam Nguyen ↗</a>
+  </nav>
+</header>
+<main class="wrap demo-page" id="content">
+<p class="kicker">Try it</p>
+<h1>Playground</h1>
+<p class="lede">Attack a small ontology in your browser: edit it, let the library's search find the worst chain of edits, see which action did the damage, and roll back to the last healthy state.</p>
+
+<div class="callout warning" role="note"><span class="label">What runs where</span><p>Everything runs in your browser. Aegis itself is Python and is not run here: the page runs a <strong>JavaScript port</strong> of the small materials example (<code>examples/attack_and_recover.py</code>): the ontology and its four edit primitives, the workload's F1 and harm, per-action attribution, the versioned log with rollback and last-healthy, and the library's greedy and beam attack searches. Its tests recompute the impacts, the candidate edits, the searches at four budgets, and 40 random edit chains against the Python and compare every number. The real ontologies, UCT search, protection by locking, and the memory defenses are not run here.</p></div>
+<div role="group" id="eplay" aria-label="Attack playground">Loading the playground…</div>
+<script src="pg.js?v=df1ec525"></script>
+<script src="playground.js?v=d5d8049c"></script>
+
+</main>
+<footer class="site">Aegis demo by <a href="https://lamng3.com/">Lam Nguyen</a>.</footer>
+</body>
+</html>

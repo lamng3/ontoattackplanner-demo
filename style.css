@@ -485,6 +485,12 @@ pre.pseudo span.ln .res { display: block; font-style: normal; color: #15803d; fo
 
 /* KG attack section */
 .kg-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; margin-top: 12px; }
+.kg-pick { display: grid; grid-template-columns: auto 1fr; gap: 6px 10px; align-items: center; margin: 4px 0 6px; }
+.kg-pick > span { font-size: 12px; color: var(--subtle); }
+.kg-pick .tabs { margin: 0; }
+.kg-pick .tab small { color: var(--subtle); margin-left: 4px; }
+#kg-levels tr { cursor: pointer; }
+#kg-levels tr.on td { background: var(--primary-10); }
 .kg-mutations { font: 12px/1.6 var(--mono); color: var(--subtle); margin: 8px 0; padding-left: 18px; }
 .kg-mutations b { color: var(--fg); font-weight: 500; }
 .kg-table { display: table; font-size: 13px; margin: 0 0 8px; }

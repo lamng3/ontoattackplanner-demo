@@ -510,6 +510,15 @@ pre.pseudo span.ln .res { display: block; font-style: normal; color: #15803d; fo
 .kg-drift .dot.s1 { fill: var(--s1); } .kg-drift .dot.s2 { fill: var(--s2); } .kg-drift .dot.s3 { fill: var(--s3); }
 @media (prefers-color-scheme: dark) { .kg-drift { --s1: #3987e5; --s2: #d95926; --s3: #199e70; } }
 .tab:disabled { opacity: 0.45; cursor: default; }
+.es-wide { margin-top: 16px; }
+.es-chart { max-width: 620px; margin: 6px 0 2px; --s4: #eda100; --s5: #e87ba4; }
+.kg-drift .s4 { stroke: var(--s4); } .kg-drift .s5 { stroke: var(--s5); }
+.kg-drift .dot.s4 { fill: var(--s4); } .kg-drift .dot.s5 { fill: var(--s5); }
+.kg-drift .dot.s4, .kg-drift .dot.s5 { stroke: var(--bg); }
+.kg-drift .truth { stroke: var(--subtle); stroke-width: 1; stroke-dasharray: 4 3; }
+.es-values td, .es-values th { text-align: right; } .es-values td:first-child, .es-values th:first-child { text-align: left; }
+.es-values .key { display: inline-block; width: 10px; height: 2px; vertical-align: middle; margin-right: 6px; }
+@media (prefers-color-scheme: dark) { .es-chart { --s4: #c98500; --s5: #d55181; } }
 @media (max-width: 900px) { .kg-grid { grid-template-columns: minmax(0, 1fr); } .kg-table { display: block; overflow-x: auto; } }
 
 /* Demo site */

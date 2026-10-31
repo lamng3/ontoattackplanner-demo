@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=889331e0">
+<link rel="stylesheet" href="style.css?v=41a40bd6">
 <title>Aegis demo</title>
 </head>
 <body>
@@ -82,13 +82,40 @@
     </div>
   </div>
 </section>
+<section class="block" id="es">
+  <h2>Price an attack, then search</h2>
+  <p class="sub">Running the pipeline on every candidate chain does not scale, so the attacker prices a chain from cheap OntoCheck signals (Levels I to III, no reasoner) and spends true evaluations only on the chains a search picks. Same LUBM department, every single edit, chains up to six edits.</p>
+  <div class="kg-grid">
+    <div class="demo-card">
+      <div class="head"><h3>Which level sees answer damage</h3><span class="tag" id="es-levels-tag"></span></div>
+      <table class="kg-table"><thead><tr><th scope="col">Signal</th><th scope="col">Level</th><th scope="col" class="num">Moved</th><th scope="col">Separates harmful edits</th></tr></thead><tbody id="es-levels"></tbody></table>
+      <p class="note">Separates: the chance a harmful edit moves the signal more than a harmless one (0.5 is chance). No signal sees every harmful edit; together they see all of them, and hundreds of harmless ones too.</p>
+    </div>
+    <div class="demo-card">
+      <div class="head"><h3>Pricing an attack</h3><span class="tag">fitted weights scored on <b>held-out families</b></span></div>
+      <table class="kg-table"><thead><tr><th scope="col">Estimator</th><th scope="col">Single edits</th><th scope="col" class="num">Top 20</th><th scope="col">Chains</th></tr></thead><tbody id="es-est"></tbody></table>
+      <p class="note" id="es-est-note"></p>
+    </div>
+  </div>
+  <div class="demo-card es-wide">
+    <div class="head"><h3>Bandit against greedy</h3><span class="tag">best harm found, <b>same true evaluations</b></span></div>
+    <div class="kg-pick">
+      <span>edits</span><div class="tabs" id="es-arm" role="tablist"></div>
+      <span>chain size</span><div class="tabs" id="es-k" role="tablist"></div>
+    </div>
+    <svg class="kg-drift es-chart" id="es-chart" role="img" aria-label="Best harm found against true evaluations, per search policy"></svg>
+    <p class="note" id="es-tip"></p>
+    <table class="kg-table es-values"><thead id="es-values-head"></thead><tbody id="es-values"></tbody></table>
+    <p class="note" id="es-note"></p>
+  </div>
+</section>
 <section class="block" id="watch">
   <h2>Watch the attack search work</h2>
   <p class="sub">A recorded run of the library's own search on a small ontology. The bandit grows its tree one iteration at a time while the ontology on the right is attacked. Pause, step, or switch to impact, greedy search, or locking. <a href="showcase.html">Open the full page</a>.</p>
   <div role="group" id="walk" data-act="2" data-autoplay="true" aria-label="Step-by-step replay">Loading the recorded run…</div>
 </section>
 <script src="demo.js?v=3a04c4bc"></script>
-<script src="kgattack.js?v=b61b698f"></script>
+<script src="kgattack.js?v=7ac27606"></script>
 <script>/* Load the replay fresh: a cached page must never run an old one. */ fetch("walkthrough.js", { cache: "no-cache" }).then((r) => r.text()).then((t) => { const s = document.createElement("script"); s.textContent = t; document.body.append(s); });</script>
 </main>
 <footer class="site">Aegis demo by <a href="https://lamng3.com/">Lam Nguyen</a>.</footer>

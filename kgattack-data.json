@@ -2840,5 +2840,1347 @@
    "restored": true,
    "verify": "verify: ok"
   }
+ },
+ "estimate": {
+  "edits": 1892,
+  "harmful": 48,
+  "levels": [
+   {
+    "key": "concept",
+    "level": "I",
+    "label": "concept coverage",
+    "auc_harmful": 0.6228,
+    "moved": 21,
+    "moved_and_harmful": 12
+   },
+   {
+    "key": "structure",
+    "level": "II-S",
+    "label": "structural paths",
+    "auc_harmful": 0.5927,
+    "moved": 66,
+    "moved_and_harmful": 12
+   },
+   {
+    "key": "logic",
+    "level": "II-L",
+    "label": "schema entailment",
+    "auc_harmful": 0.6887,
+    "moved": 196,
+    "moved_and_harmful": 21
+   },
+   {
+    "key": "logic_data",
+    "level": "II-L",
+    "label": "data-grounded entailment",
+    "auc_harmful": 0.7282,
+    "moved": 26,
+    "moved_and_harmful": 22
+   },
+   {
+    "key": "logic_precision",
+    "level": "II-L",
+    "label": "data-grounded precision",
+    "auc_harmful": 0.6617,
+    "moved": 515,
+    "moved_and_harmful": 26
+   },
+   {
+    "key": "retrieval_expansion",
+    "level": "III",
+    "label": "retrieval: ontology expansion",
+    "auc_harmful": 0.6489,
+    "moved": 256,
+    "moved_and_harmful": 20
+   },
+   {
+    "key": "retrieval_bm25",
+    "level": "III",
+    "label": "retrieval: BM25 over labels",
+    "auc_harmful": 0.5464,
+    "moved": 31,
+    "moved_and_harmful": 6
+   },
+   {
+    "key": "retrieval_vector",
+    "level": "III",
+    "label": "retrieval: vector cosine",
+    "auc_harmful": 0.5272,
+    "moved": 29,
+    "moved_and_harmful": 4
+   }
+  ],
+  "estimators": [
+   {
+    "name": "uniform (I, II, III = 1/3)",
+    "singles_auc": 0.8554,
+    "singles_p20": 0.6,
+    "chains_spearman": 0.7089
+   },
+   {
+    "name": "uniform + data-grounded F_L",
+    "singles_auc": 0.9249,
+    "singles_p20": 0.6,
+    "chains_spearman": null
+   },
+   {
+    "name": "fitted (Eq. 21), cheap",
+    "singles_auc": 0.6892,
+    "singles_p20": 0.65,
+    "chains_spearman": 0.7555
+   },
+   {
+    "name": "fitted (Eq. 21), + data-grounded F_L",
+    "singles_auc": 0.9201,
+    "singles_p20": 0.9,
+    "chains_spearman": 0.8027
+   }
+  ],
+  "chains": {
+   "n": 300,
+   "harmful": 109,
+   "synergistic": 40
+  },
+  "search": {
+   "setup": {
+    "candidates": 1729,
+    "pool": 60,
+    "evaluations": [
+     10,
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "ks": [
+     2,
+     4,
+     6
+    ]
+   },
+   "seconds": 344,
+   "arms": {
+    "any": {
+     "ground": {
+      "k": 2,
+      "evaluations": 1770,
+      "best": 0.5,
+      "chain": [
+       "ConceptDrop: Person",
+       "ConceptDrop: Student"
+      ]
+     },
+     "policies": {
+      "priced only": {
+       "2/10": {
+        "mean": 0.3571,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent"
+        ]
+       },
+       "2/25": {
+        "mean": 0.3571,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent"
+        ]
+       },
+       "2/50": {
+        "mean": 0.3571,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent"
+        ]
+       },
+       "2/100": {
+        "mean": 0.3571,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent"
+        ]
+       },
+       "4/10": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent",
+         "RelationDrop: takesCourse"
+        ]
+       },
+       "4/25": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent",
+         "RelationDrop: takesCourse"
+        ]
+       },
+       "4/50": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent",
+         "RelationDrop: takesCourse"
+        ]
+       },
+       "4/100": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent",
+         "RelationDrop: takesCourse"
+        ]
+       },
+       "6/10": {
+        "mean": 0.5714,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent",
+         "RelationDrop: subOrganizationOf",
+         "RelationDrop: takesCourse",
+         "RelationDrop: worksFor"
+        ]
+       },
+       "6/25": {
+        "mean": 0.5714,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent",
+         "RelationDrop: subOrganizationOf",
+         "RelationDrop: takesCourse",
+         "RelationDrop: worksFor"
+        ]
+       },
+       "6/50": {
+        "mean": 0.5714,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent",
+         "RelationDrop: subOrganizationOf",
+         "RelationDrop: takesCourse",
+         "RelationDrop: worksFor"
+        ]
+       },
+       "6/100": {
+        "mean": 0.5714,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent",
+         "RelationDrop: subOrganizationOf",
+         "RelationDrop: takesCourse",
+         "RelationDrop: worksFor"
+        ]
+       }
+      },
+      "random": {
+       "2/10": {
+        "mean": 0.1414,
+        "sd": 0.002,
+        "chain": [
+         "ConceptDrop: Professor",
+         "RelationDrop: teacherOf"
+        ]
+       },
+       "2/25": {
+        "mean": 0.2321,
+        "sd": 0.0911,
+        "chain": [
+         "ConceptDrop: Student",
+         "ChainBreak: some(takesCourse,Course)"
+        ]
+       },
+       "2/50": {
+        "mean": 0.2857,
+        "sd": 0.101,
+        "chain": [
+         "ConceptDrop: Student",
+         "NoiseModuleLink: Faculty ⊑ ResearchGroup"
+        ]
+       },
+       "2/100": {
+        "mean": 0.3643,
+        "sd": 0.0102,
+        "chain": [
+         "ConceptDrop: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "4/10": {
+        "mean": 0.2344,
+        "sd": 0.0915,
+        "chain": [
+         "ConceptDrop: FullProfessor",
+         "ConceptDrop: Student",
+         "ChainBreak: some(takesCourse,Course)",
+         "ConstraintPoison: domain(subOrganizationOf) Organization → ResearchGroup"
+        ]
+       },
+       "4/25": {
+        "mean": 0.3285,
+        "sd": 0.0975,
+        "chain": [
+         "ConceptDrop: Chair",
+         "ConceptDrop: Student",
+         "RelationDrop: undergraduateDegreeFrom",
+         "NoiseModuleLink: Faculty ⊑ ResearchGroup"
+        ]
+       },
+       "4/50": {
+        "mean": 0.4358,
+        "sd": 0.0498,
+        "chain": [
+         "ConceptDrop: Person",
+         "RelationDrop: takesCourse",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "ConstraintPoison: domain(subOrganizationOf) Organization → Program"
+        ]
+       },
+       "4/100": {
+        "mean": 0.4524,
+        "sd": 0.0337,
+        "chain": [
+         "ConceptDrop: Person",
+         "RelationDrop: takesCourse",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "ConstraintPoison: domain(subOrganizationOf) Organization → Program"
+        ]
+       },
+       "6/10": {
+        "mean": 0.3988,
+        "sd": 0.1546,
+        "chain": [
+         "ConceptDrop: Chair",
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "RelationDrop: teacherOf",
+         "RelationDrop: undergraduateDegreeFrom",
+         "RelationDrop: worksFor"
+        ]
+       },
+       "6/25": {
+        "mean": 0.3988,
+        "sd": 0.1546,
+        "chain": [
+         "ConceptDrop: Chair",
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "RelationDrop: teacherOf",
+         "RelationDrop: undergraduateDegreeFrom",
+         "RelationDrop: worksFor"
+        ]
+       },
+       "6/50": {
+        "mean": 0.5,
+        "sd": 0.0583,
+        "chain": [
+         "ConceptDrop: Chair",
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "RelationDrop: teacherOf",
+         "RelationDrop: undergraduateDegreeFrom",
+         "RelationDrop: worksFor"
+        ]
+       },
+       "6/100": {
+        "mean": 0.5033,
+        "sd": 0.0544,
+        "chain": [
+         "ConceptDrop: Chair",
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "RelationDrop: teacherOf",
+         "RelationDrop: undergraduateDegreeFrom",
+         "RelationDrop: worksFor"
+        ]
+       }
+      },
+      "greedy": {
+       "2/10": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student"
+        ]
+       },
+       "2/25": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student"
+        ]
+       },
+       "2/50": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student"
+        ]
+       },
+       "2/100": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student"
+        ]
+       },
+       "4/10": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "RelationDrop: takesCourse"
+        ]
+       },
+       "4/25": {
+        "mean": 0.6429,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Professor",
+         "ConceptDrop: Student",
+         "RelationDrop: subOrganizationOf"
+        ]
+       },
+       "4/50": {
+        "mean": 0.6429,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Professor",
+         "ConceptDrop: Student",
+         "RelationDrop: subOrganizationOf"
+        ]
+       },
+       "4/100": {
+        "mean": 0.6429,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Professor",
+         "ConceptDrop: Student",
+         "RelationDrop: subOrganizationOf"
+        ]
+       },
+       "6/10": {
+        "mean": 0.5714,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent",
+         "RelationDrop: subOrganizationOf",
+         "RelationDrop: takesCourse",
+         "RelationDrop: worksFor"
+        ]
+       },
+       "6/25": {
+        "mean": 0.6429,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Department",
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "RelationDrop: subOrganizationOf",
+         "RelationDrop: takesCourse",
+         "RelationDrop: worksFor"
+        ]
+       },
+       "6/50": {
+        "mean": 0.7143,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Department",
+         "ConceptDrop: Person",
+         "ConceptDrop: Professor",
+         "ConceptDrop: Student",
+         "RelationDrop: subOrganizationOf"
+        ]
+       },
+       "6/100": {
+        "mean": 0.7358,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Department",
+         "ConceptDrop: Person",
+         "ConceptDrop: Professor",
+         "ConceptDrop: Student",
+         "RelationDrop: subOrganizationOf",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       }
+      },
+      "beam (3)": {
+       "2/10": {
+        "mean": 0.3571,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Student"
+        ]
+       },
+       "2/25": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student"
+        ]
+       },
+       "2/50": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student"
+        ]
+       },
+       "2/100": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student"
+        ]
+       },
+       "4/10": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent",
+         "RelationDrop: takesCourse"
+        ]
+       },
+       "4/25": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent"
+        ]
+       },
+       "4/50": {
+        "mean": 0.5714,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "RelationDrop: subOrganizationOf"
+        ]
+       },
+       "4/100": {
+        "mean": 0.6429,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Professor",
+         "ConceptDrop: Student",
+         "RelationDrop: subOrganizationOf"
+        ]
+       },
+       "6/10": {
+        "mean": 0.5714,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent",
+         "RelationDrop: subOrganizationOf",
+         "RelationDrop: takesCourse",
+         "RelationDrop: worksFor"
+        ]
+       },
+       "6/25": {
+        "mean": 0.5714,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent",
+         "RelationDrop: subOrganizationOf",
+         "RelationDrop: takesCourse",
+         "RelationDrop: worksFor"
+        ]
+       },
+       "6/50": {
+        "mean": 0.5714,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent",
+         "RelationDrop: subOrganizationOf",
+         "RelationDrop: takesCourse"
+        ]
+       },
+       "6/100": {
+        "mean": 0.7143,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Department",
+         "ConceptDrop: Person",
+         "ConceptDrop: Professor",
+         "ConceptDrop: Student",
+         "ConceptDrop: UndergraduateStudent",
+         "RelationDrop: subOrganizationOf"
+        ]
+       }
+      },
+      "UCT bandit": {
+       "2/10": {
+        "mean": 0.4637,
+        "sd": 0.0513,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student"
+        ]
+       },
+       "2/25": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student"
+        ]
+       },
+       "2/50": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student"
+        ]
+       },
+       "2/100": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Student"
+        ]
+       },
+       "4/10": {
+        "mean": 0.5952,
+        "sd": 0.0337,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Professor",
+         "ConceptDrop: Student",
+         "RelationDrop: subOrganizationOf"
+        ]
+       },
+       "4/25": {
+        "mean": 0.5952,
+        "sd": 0.0337,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Professor",
+         "ConceptDrop: Student",
+         "RelationDrop: subOrganizationOf"
+        ]
+       },
+       "4/50": {
+        "mean": 0.5952,
+        "sd": 0.0337,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Professor",
+         "ConceptDrop: Student",
+         "RelationDrop: subOrganizationOf"
+        ]
+       },
+       "4/100": {
+        "mean": 0.619,
+        "sd": 0.0337,
+        "chain": [
+         "ConceptDrop: Person",
+         "ConceptDrop: Professor",
+         "ConceptDrop: Student",
+         "RelationDrop: subOrganizationOf"
+        ]
+       },
+       "6/10": {
+        "mean": 0.6667,
+        "sd": 0.0337,
+        "chain": [
+         "ConceptDrop: Department",
+         "ConceptDrop: Person",
+         "ConceptDrop: Professor",
+         "ConceptDrop: Student",
+         "RelationDrop: subOrganizationOf",
+         "RelationDrop: takesCourse"
+        ]
+       },
+       "6/25": {
+        "mean": 0.6667,
+        "sd": 0.0337,
+        "chain": [
+         "ConceptDrop: Department",
+         "ConceptDrop: Person",
+         "ConceptDrop: Professor",
+         "ConceptDrop: Student",
+         "RelationDrop: subOrganizationOf",
+         "RelationDrop: takesCourse"
+        ]
+       },
+       "6/50": {
+        "mean": 0.6667,
+        "sd": 0.0337,
+        "chain": [
+         "ConceptDrop: Department",
+         "ConceptDrop: Person",
+         "ConceptDrop: Professor",
+         "ConceptDrop: Student",
+         "RelationDrop: subOrganizationOf",
+         "RelationDrop: takesCourse"
+        ]
+       },
+       "6/100": {
+        "mean": 0.6905,
+        "sd": 0.0337,
+        "chain": [
+         "ConceptDrop: Department",
+         "ConceptDrop: Person",
+         "ConceptDrop: Professor",
+         "ConceptDrop: Student",
+         "RelationDrop: subOrganizationOf",
+         "RelationDrop: takesCourse"
+        ]
+       }
+      }
+     }
+    },
+    "stealthy": {
+     "ground": {
+      "k": 2,
+      "evaluations": 1770,
+      "best": 0.3571,
+      "chain": [
+       "HierarchyCut: UndergraduateStudent ⊑ Student",
+       "ChainBreak: some(takesCourse,Course)"
+      ]
+     },
+     "policies": {
+      "priced only": {
+       "2/10": {
+        "mean": 0.0216,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "2/25": {
+        "mean": 0.0216,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "2/50": {
+        "mean": 0.0216,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "2/100": {
+        "mean": 0.0216,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "4/10": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "GranularityShift: Professor",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "4/25": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "GranularityShift: Professor",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "4/50": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "GranularityShift: Professor",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "4/100": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "GranularityShift: Professor",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "6/10": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "GranularityShift: Professor",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "ConstraintPoison: domain(subOrganizationOf) Organization → College",
+         "NoiseModuleLink: Publication ⊑ Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "6/25": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "GranularityShift: Professor",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "ConstraintPoison: domain(subOrganizationOf) Organization → College",
+         "NoiseModuleLink: Publication ⊑ Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "6/50": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "GranularityShift: Professor",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "ConstraintPoison: domain(subOrganizationOf) Organization → College",
+         "NoiseModuleLink: Publication ⊑ Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "6/100": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "GranularityShift: Professor",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "ConstraintPoison: domain(subOrganizationOf) Organization → College",
+         "NoiseModuleLink: Publication ⊑ Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       }
+      },
+      "random": {
+       "2/10": {
+        "mean": 0.1011,
+        "sd": 0.0438,
+        "chain": [
+         "ChainBreak: some(takesCourse,Course)",
+         "NoiseModuleLink: Course ⊑ UndergraduateStudent"
+        ]
+       },
+       "2/25": {
+        "mean": 0.1011,
+        "sd": 0.0438,
+        "chain": [
+         "ChainBreak: some(takesCourse,Course)",
+         "NoiseModuleLink: Course ⊑ UndergraduateStudent"
+        ]
+       },
+       "2/50": {
+        "mean": 0.1295,
+        "sd": 0.0064,
+        "chain": [
+         "ChainBreak: some(takesCourse,Course)",
+         "NoiseModuleLink: Course ⊑ UndergraduateStudent"
+        ]
+       },
+       "2/100": {
+        "mean": 0.1425,
+        "sd": 0.0161,
+        "chain": [
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "4/10": {
+        "mean": 0.1095,
+        "sd": 0.0442,
+        "chain": [
+         "RelationDrop: headOf",
+         "HierarchyCut: Faculty ⊑ Employee",
+         "AxiomDrop: subOrganizationOf type TransitiveProperty",
+         "ConstraintPoison: range(subOrganizationOf) Organization → Institute"
+        ]
+       },
+       "4/25": {
+        "mean": 0.1355,
+        "sd": 0.0076,
+        "chain": [
+         "RelationDrop: headOf",
+         "HierarchyCut: Faculty ⊑ Employee",
+         "AxiomDrop: subOrganizationOf type TransitiveProperty",
+         "ConstraintPoison: range(subOrganizationOf) Organization → Institute"
+        ]
+       },
+       "4/50": {
+        "mean": 0.1496,
+        "sd": 0.01,
+        "chain": [
+         "HierarchyCut: Faculty ⊑ Employee",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Work ⊑ ResearchGroup",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "4/100": {
+        "mean": 0.2675,
+        "sd": 0.1155,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "AxiomDrop: subOrganizationOf type TransitiveProperty",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: GraduateCourse ⊑ ResearchGroup"
+        ]
+       },
+       "6/10": {
+        "mean": 0.1415,
+        "sd": 0.0521,
+        "chain": [
+         "RelationDrop: headOf",
+         "HierarchyCut: Professor ⊑ Faculty",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ FullProfessor",
+         "NoiseModuleLink: Publication ⊑ Lecturer",
+         "NoiseModuleLink: FullProfessor ⊑ ResearchGroup"
+        ]
+       },
+       "6/25": {
+        "mean": 0.1985,
+        "sd": 0.035,
+        "chain": [
+         "RelationDrop: headOf",
+         "HierarchyCut: Faculty ⊑ Employee",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Work ⊑ ResearchGroup",
+         "NoiseModuleLink: Course ⊑ UndergraduateStudent",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "6/50": {
+        "mean": 0.2891,
+        "sd": 0.1004,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "AxiomDrop: subOrganizationOf type TransitiveProperty",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ AssistantProfessor",
+         "NoiseModuleLink: GraduateCourse ⊑ ResearchGroup",
+         "NoiseModuleLink: GraduateStudent ⊑ ResearchGroup"
+        ]
+       },
+       "6/100": {
+        "mean": 0.381,
+        "sd": 0.0337,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "AxiomDrop: subOrganizationOf type TransitiveProperty",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ AssistantProfessor",
+         "NoiseModuleLink: GraduateCourse ⊑ ResearchGroup",
+         "NoiseModuleLink: GraduateStudent ⊑ ResearchGroup"
+        ]
+       }
+      },
+      "greedy": {
+       "2/10": {
+        "mean": 0.3571,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student"
+        ]
+       },
+       "2/25": {
+        "mean": 0.3571,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student"
+        ]
+       },
+       "2/50": {
+        "mean": 0.3571,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student"
+        ]
+       },
+       "2/100": {
+        "mean": 0.3571,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student"
+        ]
+       },
+       "4/10": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "4/25": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "4/50": {
+        "mean": 0.3834,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "DirectionFlip: publicationAuthor",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "4/100": {
+        "mean": 0.5,
+        "sd": 0.0,
+        "chain": [
+         "RelationDrop: headOf",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "AxiomDrop: subOrganizationOf type TransitiveProperty",
+         "InferenceWeaken: Student"
+        ]
+       },
+       "6/10": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "6/25": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "6/50": {
+        "mean": 0.4578,
+        "sd": 0.0,
+        "chain": [
+         "RelationDrop: headOf",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "DirectionFlip: publicationAuthor",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ AssociateProfessor",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "6/100": {
+        "mean": 0.4578,
+        "sd": 0.0,
+        "chain": [
+         "RelationDrop: headOf",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "DirectionFlip: publicationAuthor",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ AssistantProfessor",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       }
+      },
+      "beam (3)": {
+       "2/10": {
+        "mean": 0.0216,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "2/25": {
+        "mean": 0.3571,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student"
+        ]
+       },
+       "2/50": {
+        "mean": 0.3571,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student"
+        ]
+       },
+       "2/100": {
+        "mean": 0.3571,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student"
+        ]
+       },
+       "4/10": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "4/25": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "4/50": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "4/100": {
+        "mean": 0.3834,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "DirectionFlip: publicationAuthor",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "6/10": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "6/25": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "6/50": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "6/100": {
+        "mean": 0.3834,
+        "sd": 0.0,
+        "chain": [
+         "GranularityShift: Professor",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "DirectionFlip: publicationAuthor",
+         "InferenceWeaken: Student",
+         "ConstraintPoison: domain(subOrganizationOf) Organization → College",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       }
+      },
+      "UCT bandit": {
+       "2/10": {
+        "mean": 0.3571,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student"
+        ]
+       },
+       "2/25": {
+        "mean": 0.3571,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student"
+        ]
+       },
+       "2/50": {
+        "mean": 0.3571,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student"
+        ]
+       },
+       "2/100": {
+        "mean": 0.3571,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student"
+        ]
+       },
+       "4/10": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "4/25": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "4/50": {
+        "mean": 0.3803,
+        "sd": 0.0022,
+        "chain": [
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "DirectionFlip: publicationAuthor",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "4/100": {
+        "mean": 0.4429,
+        "sd": 0.0102,
+        "chain": [
+         "RelationDrop: headOf",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "6/10": {
+        "mean": 0.2736,
+        "sd": 0.1486,
+        "chain": [
+         "GranularityShift: Professor",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "ConstraintPoison: domain(subOrganizationOf) Organization → College",
+         "NoiseModuleLink: Publication ⊑ Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "6/25": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "GranularityShift: Professor",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "ConstraintPoison: domain(subOrganizationOf) Organization → College",
+         "NoiseModuleLink: Publication ⊑ Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "6/50": {
+        "mean": 0.3787,
+        "sd": 0.0,
+        "chain": [
+         "GranularityShift: Professor",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "ConstraintPoison: domain(subOrganizationOf) Organization → College",
+         "NoiseModuleLink: Publication ⊑ Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       },
+       "6/100": {
+        "mean": 0.4056,
+        "sd": 0.0315,
+        "chain": [
+         "RelationDrop: headOf",
+         "HierarchyCut: UndergraduateStudent ⊑ Student",
+         "InferenceWeaken: Student",
+         "ConstraintPoison: domain(subOrganizationOf) Organization → College",
+         "NoiseModuleLink: Publication ⊑ Student",
+         "NoiseModuleLink: Publication ⊑ UndergraduateStudent"
+        ]
+       }
+      }
+     }
+    }
+   }
+  }
  }
 }

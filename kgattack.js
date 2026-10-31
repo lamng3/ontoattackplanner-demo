@@ -218,10 +218,118 @@
     });
   }
 
+  // Price an attack, then search (data.estimate, from experiments/profiles, estimator, and search).
+  var POLICIES = ["UCT bandit", "greedy", "beam (3)", "random", "priced only"];
+  var es = { arm: "any", k: 4 };
+
+  function estimateTables() {
+    var e = data.estimate;
+    el("es-levels-tag").innerHTML = "<b>" + e.harmful + "</b> of " + e.edits.toLocaleString("en-US") + " edits harm answers";
+    e.levels.forEach(function (r) {
+      var tr = h("tr");
+      tr.appendChild(h("td", null, r.label));
+      tr.appendChild(h("td", "muted", r.level));
+      tr.appendChild(h("td", "num", String(r.moved)));
+      var td = h("td"); td.appendChild(meter(r.auc_harmful)); tr.appendChild(td);
+      tr.title = r.moved_and_harmful + " of the " + r.moved + " edits it moves harm answers";
+      el("es-levels").appendChild(tr);
+    });
+    e.estimators.forEach(function (r) {
+      var tr = h("tr");
+      tr.appendChild(h("td", null, r.name));
+      var a = h("td"); a.appendChild(meter(r.singles_auc)); tr.appendChild(a);
+      tr.appendChild(h("td", "num", Math.round(r.singles_p20 * 20) + " / 20"));
+      var c = h("td", "muted"); if (r.chains_spearman == null) c.textContent = "not run"; else c.appendChild(meter(r.chains_spearman, true));
+      tr.appendChild(c);
+      el("es-est").appendChild(tr);
+    });
+    el("es-est-note").textContent = "Single edits: chance a harmful edit is priced above a harmless one. Top 20: how many of the 20 best-priced edits truly harm answers. Chains: rank correlation of the price with the true harm over " +
+      e.chains.n + " chains of 2 to 4 edits, priced from their edits alone. Fitting weights to cheap signals overfits across attack families; the uniform 1/3 per level holds up, and the data-grounded signal (it needs the reasoner) is worth its cost.";
+  }
+
+  function esTabs() {
+    var mk = function (box, choices, key) {
+      el(box).innerHTML = "";
+      choices.forEach(function (c) {
+        var b = h("button", "tab", c[1]);
+        b.type = "button"; b.setAttribute("role", "tab");
+        b.setAttribute("aria-selected", c[0] === es[key] ? "true" : "false");
+        b.onclick = function () { es[key] = c[0]; esTabs(); esChart(); };
+        el(box).appendChild(b);
+      });
+    };
+    mk("es-arm", [["any", "any edit"], ["stealthy", "stealthy"]], "arm");
+    mk("es-k", data.estimate.search.setup.ks.map(function (k) { return [k, k + " edits"]; }), "k");
+  }
+
+  // Best harm against true evaluations, one line per policy, labelled at its end; hover for the values.
+  function esChart() {
+    var s = data.estimate.search, a = s.arms[es.arm], evals = s.setup.evaluations;
+    var svg = el("es-chart"), ns = "http://www.w3.org/2000/svg";
+    svg.innerHTML = "";
+    var W = 560, H = 236, L = 34, R = 96, T = 10, B = 40;
+    var at = function (p, n) { return a.policies[p][es.k + "/" + n]; };
+    var max = 0;
+    POLICIES.forEach(function (p) { evals.forEach(function (n) { max = Math.max(max, at(p, n).mean); }); });
+    if (es.k === 2) max = Math.max(max, a.ground.best);
+    max = Math.max(0.1, Math.ceil(max * 10) / 10);
+    var x = function (i) { return L + i / (evals.length - 1) * (W - L - R); };
+    var y = function (v) { return T + (1 - v / max) * (H - T - B); };
+    var mk = function (tag, attrs, text) { var e = document.createElementNS(ns, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; svg.appendChild(e); return e; };
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    [0, max / 2, max].forEach(function (v) {
+      mk("line", { x1: L, x2: W - R, y1: y(v), y2: y(v), class: "grid" });
+      mk("text", { x: L - 6, y: y(v) + 3, class: "tick", "text-anchor": "end" }, v.toFixed(2));
+    });
+    evals.forEach(function (n, i) { mk("text", { x: x(i), y: H - B + 16, class: "tick", "text-anchor": "middle" }, n); });
+    mk("text", { x: (L + W - R) / 2, y: H - 3, class: "tick", "text-anchor": "middle" }, "true evaluations");
+    if (es.k === 2) {
+      mk("line", { x1: L, x2: W - R, y1: y(a.ground.best), y2: y(a.ground.best), class: "truth" });
+      mk("text", { x: L + 4, y: y(a.ground.best) - 4, class: "tick" }, "best pair (exhaustive, " + a.ground.evaluations.toLocaleString("en-US") + " evaluations)");
+    }
+    // End labels, nudged apart so equal values stay readable.
+    var ends = POLICIES.map(function (p, i) { return { p: p, i: i, y: y(at(p, evals[evals.length - 1]).mean) }; }).sort(function (u, v) { return u.y - v.y; });
+    for (var j = 1; j < ends.length; j++) if (ends[j].y - ends[j - 1].y < 12) ends[j].y = ends[j - 1].y + 12;
+    POLICIES.forEach(function (p, i) {
+      var pts = evals.map(function (n, j) { return x(j) + "," + y(at(p, n).mean); }).join(" ");
+      mk("polyline", { points: pts, class: "line s" + (i + 1) });
+      evals.forEach(function (n, j) { mk("circle", { cx: x(j), cy: y(at(p, n).mean), r: 3.5, class: "dot s" + (i + 1) }); });
+    });
+    ends.forEach(function (e) { mk("text", { x: W - R + 10, y: e.y + 4, class: "lab" }, e.p); });
+    var cross = mk("line", { x1: 0, x2: 0, y1: T, y2: H - B, class: "cross", visibility: "hidden" });
+    var tip = el("es-tip");
+    svg.onmousemove = function (ev) {
+      var r = svg.getBoundingClientRect(), px = (ev.clientX - r.left) / r.width * W;
+      var i = Math.max(0, Math.min(evals.length - 1, Math.round((px - L) / (W - L - R) * (evals.length - 1))));
+      cross.setAttribute("x1", x(i)); cross.setAttribute("x2", x(i)); cross.setAttribute("visibility", "visible");
+      tip.textContent = evals[i] + " evaluations: " + POLICIES.map(function (p) { return p + " " + at(p, evals[i]).mean.toFixed(2); }).join(" · ");
+    };
+    svg.onmouseleave = function () { cross.setAttribute("visibility", "hidden"); tip.textContent = "Hover for the values at each budget."; };
+    svg.onmouseleave();
+
+    // The same numbers as a table, with each policy's best chain at the largest budget on hover.
+    var head = el("es-values-head"); head.innerHTML = "";
+    var hr = h("tr"); hr.appendChild(h("th", null, "policy"));
+    evals.forEach(function (n) { hr.appendChild(h("th", null, n + " evals")); });
+    head.appendChild(hr);
+    var body = el("es-values"); body.innerHTML = "";
+    POLICIES.forEach(function (p, i) {
+      var tr = h("tr"), td = h("td"), key = h("span", "key");
+      key.style.background = getComputedStyle(svg).getPropertyValue("--s" + (i + 1));
+      td.appendChild(key); td.appendChild(document.createTextNode(p)); tr.appendChild(td);
+      evals.forEach(function (n) { var v = at(p, n); tr.appendChild(h("td", null, v.mean.toFixed(2) + (v.sd ? " ±" + v.sd.toFixed(2) : ""))); });
+      tr.title = at(p, evals[evals.length - 1]).chain.join("; ");
+      body.appendChild(tr);
+    });
+    el("es-note").textContent = "Harm is the mean 1 − F1 of the 14 LUBM answers. Every policy draws from the " + s.setup.pool +
+      " best-priced edits; UCT and random are the mean of " + s.setup.seeds + " seeds. The bandit finds more harm when evaluations are scarce and chains are long; greedy catches up and passes it with 50 to 100. At Level V an evaluation is an LLM call, so evaluations are scarce. All three experiments run in " + Math.round(s.seconds / 60) + " minutes on a laptop.";
+  }
+
   fetch("kgattack-data.json").then(function (r) { return r.json(); }).then(function (d) {
     data = d;
     el("kg-budget").max = d.arms[arm].length;
     el("kg-budget").oninput = render;
     arms(); update(); drift(); families();
+    if (d.estimate && el("es")) { estimateTables(); esTabs(); esChart(); }
   });
 })();

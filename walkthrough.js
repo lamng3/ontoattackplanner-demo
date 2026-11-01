@@ -456,7 +456,7 @@ const MARKUP = `
   <span class="count" id="wt-count"></span>
 </div>
 `;
-const acts = [areaAct(), greedyAct(), uctAct(), lockAct()];
+const acts = [areaAct(), greedyAct(), uctAct()];  // attack only: locking is out of scope
 // The stages of each part, and which step tags belong to which stage.
 const PHASES = [
   [["Workload", "workload"], ["Reach", "reach"], ["Remove a concept", "scan concept"], ["Cut a relation", "scan relation"], ["Vulnerable area", "vulnerable area"]],

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Showcase — Aegis demo</title>
+<title>Showcase — OntoAttack demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
 @media (prefers-color-scheme: dark) { .dsh { --dsh-acc: #6ea8ff; } }
 </style>
 <header class="dsh">
-  <a class="dsh-logo" href="index.html"><span class="dsh-mark">A</span><span>Aegis</span></a>
+  <a class="dsh-logo" href="index.html"><span class="dsh-mark">O</span><span>OntoAttack</span></a>
   <nav class="dsh-nav" aria-label="Demos"><a href="index.html">Overview</a><a href="playground.html">Playground</a><a href="showcase.html" aria-current="page">Showcase</a><a href="leaderboard.html">Leaderboard</a></nav>
 </header>
 <main class="wrap demo-page" id="content">
@@ -34,11 +34,11 @@
 <h1>Showcase</h1>
 <p class="lede">Replay a real run of the attack search on the small materials ontology, one step at a time: the impact of each element, greedy search, and the bandit's search tree.</p>
 
-<div class="callout" role="note"><span class="label">What this is</span><p>A recording of the library, not a simulation. <code>experiments/walkthrough/trace.py</code> runs Aegis's own impact ranking, greedy search, UCT, and beam search on the materials ontology of the <a href="playground.html">playground</a>, and writes every step down; this page replays it. Under the ontology, <strong>AFF</strong> is the affected area of the state shown, as <code>forensics.affected_area</code> computes it (after Fan et al., SIGMOD 2011): the answers each question lost and gained.</p></div>
+<div class="callout" role="note"><span class="label">What this is</span><p>A recording of the library, not a simulation. <code>experiments/walkthrough/trace.py</code> runs OntoAttack's own impact ranking, greedy search, UCT, and beam search on the materials ontology of the <a href="playground.html">playground</a>, and writes every step down; this page replays it. Under the ontology, <strong>AFF</strong> is the affected area of the state shown, as <code>forensics.affected_area</code> computes it (after Fan et al., SIGMOD 2011): the answers each question lost and gained.</p></div>
 <div role="group" id="walk" aria-label="Step-by-step replay">Loading the recorded run…</div>
 <script>/* Load the replay fresh: a cached page must never run an old one. */ fetch("walkthrough.js", { cache: "no-cache" }).then((r) => r.text()).then((t) => { const s = document.createElement("script"); s.textContent = t; document.body.append(s); });</script>
 
 </main>
-<footer class="site">Aegis demo by <a href="https://lamng3.com/">Lam Nguyen</a>.</footer>
+<footer class="site">OntoAttack demo by <a href="https://lamng3.com/">Lam Nguyen</a>.</footer>
 </body>
 </html>

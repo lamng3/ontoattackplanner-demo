@@ -1,4 +1,4 @@
-// The Aegis playground: attack a small ontology, find the damage, and roll back, in the browser.
+// The OntoAttack playground: attack a small ontology, find the damage, and roll back, in the browser.
 // A port of the toy of examples/attack_and_recover.py: ontology and actions, workload F1 and harm, per-action attribution,
 // the versioned log with rollback and last-healthy, and the library's greedy and beam attack searches. The page's tests
 // recompute the impacts, the candidate units, the searches, and 40 random chains against the Python (playground-data.json).
@@ -96,7 +96,7 @@ var AE = (function () {
     for (var i = v.log.length - 1; i >= 0; i--) { var rec = v.log[i]; rec.undo.forEach(function (u) { state = applyAction(state, u)[0]; }); if (healthy(state)) return rec.lsn - 1; }
     return null;
   }
-  // Impact and the attack search (aegis.impact, aegis.attacks)
+  // Impact and the attack search (ontoattack.impact, ontoattack.attacks)
   function conceptImpact(w, o) { var base = w.mean(o), out = {}; o.cs().forEach(function (c) { out[c] = base - w.mean(o.without(c)); }); return out; }
   function relationImpact(w, o) { var base = w.mean(o), out = []; o.rels().forEach(function (r) { out.push([r, base - w.mean(o.withoutRel(r))]); }); return out; }
   function candidateUnits(o, cd, rd, top) {
@@ -157,7 +157,7 @@ var AE = (function () {
   var root = document.getElementById("eplay");
   if (!root) return;
   var h = PG.h, data = await fetch("playground-data.json").then(function (r) { return r.json(); });
-  var base = new AE.Ont(data.ontology.concepts, data.ontology.relations), wl = new AE.Workload(data.workload), v, STORAGE = "aegis-playground";
+  var base = new AE.Ont(data.ontology.concepts, data.ontology.relations), wl = new AE.Workload(data.workload), v, STORAGE = "ontoattack-playground";
   var healthy = function (o) { var d = o.subclasses("Material"); return ["Metal", "Alloy", "Steel"].every(function (c) { return d.has(c); }); };
   var out = { tree: h("div", { id: "ep-tree" }), damage: h("div", { id: "ep-damage" }), recover: h("div", { id: "ep-recover" }), search: h("div", { id: "ep-search" }), msg: h("p", { class: "pg-note", id: "ep-msg", role: "status" }) };
   var compare = 0;

@@ -1,6 +1,6 @@
-// Showcase: replays a recorded run of Aegis's own attack search on the small materials ontology.
+// Showcase: replays a recorded run of OntoAttack's own attack search on the small materials ontology.
 // Nothing is searched in the browser: every score, tree, and lock choice is read from walkthrough-data.json,
-// written by experiments/walkthrough/trace.py in the Aegis repository and exported by walkthrough_data.py.
+// written by experiments/walkthrough/trace.py in the OntoAttack repository and exported by walkthrough_data.py.
 (function () {
 const root = document.getElementById("walk");
 if (!root) return;

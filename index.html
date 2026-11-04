@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css?v=41a40bd6">
-<title>Aegis demo</title>
+<title>OntoAttack demo</title>
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -26,14 +26,14 @@
 @media (prefers-color-scheme: dark) { .dsh { --dsh-acc: #6ea8ff; } }
 </style>
 <header class="dsh">
-  <a class="dsh-logo" href="index.html"><span class="dsh-mark">A</span><span>Aegis</span></a>
+  <a class="dsh-logo" href="index.html"><span class="dsh-mark">O</span><span>OntoAttack</span></a>
   <nav class="dsh-nav" aria-label="Demos"><a href="index.html" aria-current="page">Overview</a><a href="playground.html">Playground</a><a href="showcase.html">Showcase</a><a href="leaderboard.html">Leaderboard</a></nav>
 </header>
 <main class="wrap" id="content" style="max-width:1280px">
 <section class="hero">
   <div>
     <h1>Planning the most harmful attack on ontology-grounded agents</h1>
-    <p class="lede">Aegis plans attacks on ontology-grounded agents: under a budget of edits and evaluations, and at every level of attacker knowledge, it finds the chain of ontology edits that hurts the agent&#x27;s answers most. The knowledge graph is never touched.</p>
+    <p class="lede">OntoAttack plans attacks on ontology-grounded agents: under a budget of edits and evaluations, and at every level of attacker knowledge, it finds the chain of ontology edits that hurts the agent&#x27;s answers most. The knowledge graph is never touched.</p>
   </div>
   <div class="demo-card" id="demo">
     <div class="head"><h3>Attack search</h3><span class="tag">recorded <b>experiment results</b></span></div>
@@ -115,6 +115,6 @@
 <script src="kgattack.js?v=7ac27606"></script>
 <script>/* Load the replay fresh: a cached page must never run an old one. */ fetch("walkthrough.js", { cache: "no-cache" }).then((r) => r.text()).then((t) => { const s = document.createElement("script"); s.textContent = t; document.body.append(s); });</script>
 </main>
-<footer class="site">Aegis demo by <a href="https://lamng3.com/">Lam Nguyen</a>.</footer>
+<footer class="site">OntoAttack demo by <a href="https://lamng3.com/">Lam Nguyen</a>.</footer>
 </body>
 </html>

@@ -1,4 +1,4 @@
-// The OntoAttack playground: attack a small ontology, find the damage, and roll back, in the browser.
+// The OntoAttackPlanner playground: attack a small ontology, find the damage, and roll back, in the browser.
 // A port of the toy of examples/attack_and_recover.py: ontology and actions, workload F1 and harm, per-action attribution,
 // the versioned log with rollback and last-healthy, and the library's greedy and beam attack searches. The page's tests
 // recompute the impacts, the candidate units, the searches, and 40 random chains against the Python (playground-data.json).
